@@ -18,9 +18,9 @@ export default function AppLayout() {
   const mobileLinks = user.isAdmin ? [...links, { to: '/admin', label: 'Админ' }] : links;
 
   return (
-    <div className="min-h-screen bg-slate-950 bg-[url('./assets/background.png')] bg-repeat text-slate-100 pb-16 md:pb-0">
+    <div className="min-h-screen bg-slate-950 bg-[url('./assets/background.png')] bg-repeat bg-[length:672px_384px] text-slate-100 pb-16 md:pb-0">
       <header className="sticky top-0 z-10 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-6">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <img src={logo} alt="" className="h-8 w-8" />
           <span className="font-semibold">WW New Year</span>
 
