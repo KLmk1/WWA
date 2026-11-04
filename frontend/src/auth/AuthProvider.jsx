@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { api, ApiError } from '../lib/api.js';
 import { AuthContext } from './auth-context.js';
+import { getMe } from '../api/me.js';
 
 // user: { id, discordId, username, avatar, isAdmin } | null
 export function AuthProvider({ children }) {
@@ -12,7 +13,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const controller = new AbortController();
 
-    api('/me', { signal: controller.signal })
+    getMe(controller.signal)
       .then((u) => { setUser(u); setError(null); })
       .catch((e) => {
         if (e.name === 'AbortError') return;
