@@ -1,0 +1,37 @@
+name: Build and Deploy Frontend from Monorepo
+
+on:
+  push:
+    branches:
+      - main # Название вашей главной ветки
+    paths:
+      - 'frontend/**' # Скрипт сработает только если изменились файлы во frontend
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json # Кэширование для монорепо
+
+      - name: Install and Build Frontend
+        working-directory: ./frontend # Все команды ниже выполняются внутри папки frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy Frontend Dist to Separate Branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: frontend/dist # Путь к билду относительно корня репозитория
+          branch: dist-branch # Ветка, куда запишется чистый билд (например, gh-pages или dist)
