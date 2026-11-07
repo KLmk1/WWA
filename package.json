@@ -4,5 +4,8 @@
     "build:frontend": "npm run build --prefix frontend",
     "predeploy": "npm run build:frontend",
     "deploy:frontend": "gh-pages -b dist-branch -d frontend/dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
