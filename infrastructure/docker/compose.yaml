@@ -1,0 +1,16 @@
+
+services:
+  frontend:
+    image: ${FRONTEND_IMAGE:-my-project-frontend:local}
+    container_name: my-project-frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    networks:
+      - app-network
+
+  # В будущем добавим backend и db.
+
+networks:
+  app-network:
+    driver: bridge

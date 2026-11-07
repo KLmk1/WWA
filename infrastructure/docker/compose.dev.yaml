@@ -1,0 +1,3 @@
+services:
+  frontend:
+    pull_policy: always
