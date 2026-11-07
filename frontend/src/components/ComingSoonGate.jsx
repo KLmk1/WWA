@@ -13,7 +13,7 @@ const TITLES = {
 export default function ComingSoonGate() {
   const { pathname } = useLocation();
   const section = pathname.split('/')[1];
-
+console.log('gate:', section, EVENT.comingSoon);
   if (EVENT.comingSoon?.[section]) return <ComingSoon title={TITLES[section]} />;
   return <Outlet />;
 }

@@ -12,8 +12,8 @@ import BigChain from '../components/dashboard/BigChain.jsx';
 
 const FEATURES = [
   { to: '/cup', icon: '/icons/cup.png', title: 'Новогодний Кубок', text: 'Драфт, турнирная сетка и счёт матчей в реальном времени.' },
-  { to: '/awards', icon: '/icons/awards.png', title: 'WWAwards', text: 'Тайное голосование в шуточных номинациях: «Фидер года», «CEO Рошпита», «Агент 007».' },
-  { to: '/quiz', icon: '/icons/quiz.png', title: 'Новогодний квиз', text: '20 вопросов по Dota 2 и мемам сервера. Одна попытка и таблица лидеров.' },
+  { to: '/awards', icon: '/icons/awards.png', title: 'WWAwards', text: 'Тайное голосование за ЛЕГЕНДУ и другие номинации' },
+  { to: '/quiz', icon: '/icons/quiz.png', title: 'Новогодний квиз', text: 'Вопросы по Dota 2 и мемам сервера. Одна попытка и таблица лидеров.' },
 ];
 
 function scrollToId(id) {

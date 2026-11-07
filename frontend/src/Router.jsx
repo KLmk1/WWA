@@ -35,11 +35,7 @@ export const router = createBrowserRouter([
                 children: [
                   { path: 'cup', ...page(() => import('./pages/Cup.jsx')) },
                   { path: 'awards', ...page(() => import('./pages/Awards.jsx')) },
-
-                  { path: 'quiz', ...page(() => import('./pages/quiz/QuizStart.jsx')) },
-                  { path: 'quiz/play', ...page(() => import('./pages/quiz/QuizPlay.jsx')) },
-                  { path: 'quiz/result', ...page(() => import('./pages/quiz/QuizResult.jsx')) },
-                  { path: 'quiz/leaderboard', ...page(() => import('./pages/quiz/Leaderboard.jsx')) },
+                  { path: 'quiz', ...page(() => import('./pages/Quiz.jsx')) },
                 ],
               },
 

@@ -1,3 +1,3 @@
 export default function RouteError() {
-  return (<div>hu</div>)
+  return (<div>Неправильный путь</div>)
 }
