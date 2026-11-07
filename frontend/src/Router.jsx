@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { RequireAuth, RequireAdmin, GuestOnly } from './auth/guards.jsx';
+import { RequireAuth, RequireAdmin, GuestOnly } from './auth/Guards.jsx';
 import AppLayout from './layouts/AppLayout.jsx';
 import AdminLayout from './layouts/AdminLayout.jsx';
 import RouteError from './pages/RouteError.jsx';
