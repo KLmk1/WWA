@@ -250,3 +250,164 @@
     background-repeat: repeat-y;
   }
 }
+
+/* ---------- Dashboard: появление при скролле ---------- */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal-up { transform: translateY(36px); }
+.reveal-left { transform: translateX(-44px); }
+.reveal-right { transform: translateX(44px); }
+.reveal-zoom { transform: scale(0.9); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------- Стекло ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.glass-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-hover:hover {
+  transform: translateY(-5px);
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 16px 44px -14px rgba(139, 92, 246, 0.5);
+}
+
+/* ---------- Заголовок с переливом ---------- */
+.text-shimmer {
+  background: linear-gradient(100deg, #c4b5fd, #f5d0fe, #a5b4fc, #c4b5fd);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
+
+/* ---------- Плавающие пятна в hero ---------- */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  pointer-events: none;
+  animation: orb-float 16s ease-in-out infinite alternate;
+}
+@keyframes orb-float { to { transform: translate3d(36px, -28px, 0) scale(1.12); } }
+
+/* ---------- Снег ---------- */
+.snowflake {
+  position: absolute;
+  top: -12px;
+  border-radius: 9999px;
+  background: #fff;
+  animation: snow-fall linear infinite;
+  will-change: transform;
+}
+@keyframes snow-fall {
+  to { transform: translate3d(var(--drift, 20px), var(--fall, 760px), 0); }
+}
+
+/* ---------- Смена цифр таймера ---------- */
+.tick { display: inline-block; animation: tick 0.4s ease-out; }
+@keyframes tick {
+  from { transform: translateY(-10px); opacity: 0.2; }
+  to { transform: none; opacity: 1; }
+}
+
+/* ---------- Таймлайн ---------- */
+.tl-fill { transform-origin: top; transform: scaleY(var(--progress, 0)); }
+.tl-dot { transition: background 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease; }
+.is-visible .tl-dot {
+  background: #a78bfa;
+  transform: scale(1);
+  box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.18), 0 0 18px rgba(167, 139, 250, 0.7);
+}
+
+/* ---------- Цепи на фоне главной ---------- */
+.chain-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw; /* на всю ширину экрана, а не только колонки контента */
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.chain-slot {
+  position: absolute;
+  width: min(var(--w), 30vw);
+  transform: translate3d(0, calc(var(--sy, 0) * var(--speed, 0) * 1px), 0) rotate(var(--rot, 0deg));
+}
+
+.chain-sway {
+  transform-origin: 50% 0;
+  animation:
+    chain-in 1.4s ease-out both,
+    chain-sway var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+@keyframes chain-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes chain-sway {
+  from { transform: rotate(-2.5deg); }
+  to   { transform: rotate(2.5deg); }
+}
+
+/* Фиолетовый цветокор: убираем исходный цвет, красим в фиолетовый, добавляем свечение */
+.chain-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: var(--o, 0.5);
+  filter:
+    grayscale(1) sepia(1) hue-rotate(235deg) saturate(2.6) brightness(0.8) contrast(1.1)
+    drop-shadow(0 0 14px rgba(139, 92, 246, 0.55));
+}
+
+/* ---------- Большая цепь внутри hero, за стеклом ---------- */
+.chain-big-layer {
+  position: absolute;
+  inset: 0; /* по размеру карточки hero */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.chain-big-float {
+  display: flex;
+  justify-content: center;
+  animation: chain-big-float 11s ease-in-out infinite alternate;
+}
+@keyframes chain-big-float {
+  from { transform: translate3d(0, -8px, 0) rotate(-0.6deg); }
+  to   { transform: translate3d(0, 10px, 0) rotate(0.6deg); }
+}
+
+.chain-big {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain; /* картинка видна целиком */
+  transform: translate3d(0, calc(var(--sy, 0) * 0.06 * 1px), 0);
+  opacity: 0.85;
+  filter:
+    grayscale(1) sepia(1) hue-rotate(235deg) saturate(2.6) brightness(0.85) contrast(1.1)
+    drop-shadow(0 0 40px rgba(139, 92, 246, 0.6));
+}
+
+/* Стеклянный слой поверх цепи */
+.glass-pane {
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  backdrop-filter: blur(4px) saturate(1.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}

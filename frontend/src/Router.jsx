@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { RequireAuth, RequireAdmin, GuestOnly } from './auth/Guards.jsx';
+import { RequireAuth, RequireAdmin, GuestOnly } from './auth/guards.jsx';
 import AppLayout from './layouts/AppLayout.jsx';
 import AdminLayout from './layouts/AdminLayout.jsx';
 import RouteError from './pages/RouteError.jsx';
+import ComingSoonGate from './components/ComingSoonGate.jsx';
 
 // Ленивая загрузка страниц: каждая страница — отдельный чанк.
 // Страница должна делать `export default`.
@@ -28,13 +29,19 @@ export const router = createBrowserRouter([
             element: <AppLayout />,
             children: [
               { index: true, ...page(() => import('./pages/Dashboard.jsx')) },
-              { path: 'cup', ...page(() => import('./pages/Cup.jsx')) },
-              { path: 'awards', ...page(() => import('./pages/Awards.jsx')) },
+              // Разделы, которые можно закрыть заглушкой COMING SOON (флаги в config/event.js)
+              {
+                element: <ComingSoonGate />,
+                children: [
+                  { path: 'cup', ...page(() => import('./pages/Cup.jsx')) },
+                  { path: 'awards', ...page(() => import('./pages/Awards.jsx')) },
 
-              { path: 'quiz', ...page(() => import('./pages/quiz/QuizStart.jsx')) },
-              { path: 'quiz/play', ...page(() => import('./pages/quiz/QuizPlay.jsx')) },
-              { path: 'quiz/result', ...page(() => import('./pages/quiz/QuizResult.jsx')) },
-              { path: 'quiz/leaderboard', ...page(() => import('./pages/quiz/Leaderboard.jsx')) },
+                  { path: 'quiz', ...page(() => import('./pages/quiz/QuizStart.jsx')) },
+                  { path: 'quiz/play', ...page(() => import('./pages/quiz/QuizPlay.jsx')) },
+                  { path: 'quiz/result', ...page(() => import('./pages/quiz/QuizResult.jsx')) },
+                  { path: 'quiz/leaderboard', ...page(() => import('./pages/quiz/Leaderboard.jsx')) },
+                ],
+              },
 
               // --- Админка: роль проверяется и на бэкенде, здесь только UX ---
               {

@@ -4,10 +4,10 @@ import { useAuth } from '../auth/useAuth.jsx';
 import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 
 const links = [
-  { to: '/', label: 'Главная', end: true, icon: '/icons/main.png' },
-  { to: '/cup', label: 'Кубок', icon: '/icons/cup.png' },
-  { to: '/awards', label: 'Awards', icon: '/icons/awards.png' },
-  { to: '/quiz', label: 'Квиз', icon: '/icons/quiz.png' },
+  { to: '/', label: 'Главная', end: true, icon: '/icons/main.png', iconMobile: '/icons/main.png' },
+  { to: '/cup', label: 'Кубок', icon: '/icons/cup.png', iconMobile: '/icons/cup-mobile.png' },
+  { to: '/awards', label: 'Awards', icon: '/icons/awards.png', iconMobile: '/icons/awards-mobile.png' },
+  { to: '/quiz', label: 'Квиз', icon: '/icons/quiz.png', iconMobile: '/icons/quiz-mobile.png'  },
 ];
 const adminLink = { to: '/admin', label: 'Админка', icon: '/icons/admin.png' };
 
@@ -24,6 +24,14 @@ function NavIcon({ to, label, end, icon }) {
     </NavLink>
   );
 }
+function NavIconMobile({ to, label, end, iconMobile }) {
+  return (
+    <NavLink to={to} end={end} title={label} aria-label={label} className={itemClass}>
+        <img src={iconMobile} alt="" className="h-20 w-auto rounded-lg object-contain md:h-15" />
+    </NavLink>
+  );
+}
+
 export default function AppLayout() {
   const { user, logout } = useAuth();
   const navigation = useNavigation();
@@ -62,7 +70,7 @@ export default function AppLayout() {
         className="fixed inset-x-0 bottom-0 flex justify-center gap-2 border-t border-slate-800 bg-slate-950 px-2 py-1 md:hidden"
         aria-label="Основная навигация"
       >
-        {items.map((item) => <NavIcon key={item.to} {...item} />)}
+        {items.map((item) => <NavIconMobile key={item.to} {...item} />)}
       </nav>
     </div>
   );
