@@ -1,6 +1,6 @@
 # 🎄 WW New Year Event Platform
 
-Веб-платформа для проведения новогоднего внутриигрового ивента и киберспортивной премии **WWAwards** для локального Discord-сообщества (~30 участников).
+Веб-платформа для проведения новогоднего внутриигрового ивента и киберспортивной премии **WWAwards** для локального Discord-сообщества (до ~50 участников).
 
 Проект представляет собой MVP-платформу, объединяющую управление турниром по Dota 2, скрытое голосование за номинации и праздничную викторину.
 
@@ -10,7 +10,7 @@
 
 - **Frontend:** React (Vite), JavaScript, Tailwind CSS
 - **Backend:** Node.js, Express.js
-- **Database:** PostgreSQL / MongoDB
+- **Database:** PostgreSQL
 - **Authentication:** Discord OAuth2 (Вход на сайт в один клик через Discord-аккаунт)
 
 ---
@@ -44,7 +44,7 @@
 ### 1. Клонирование репозитория
 ```bash
 git clone https://github.com
-cd ww-newyear-event
+cd WWA
 ```
 
 ### 2. Настройка Бэкенда

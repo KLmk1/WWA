@@ -1,3 +1,16 @@
+# Только PostgreSQL для локальной разработки: docker compose -f docker-compose.dev.yml up -d
 services:
-  frontend:
-    pull_policy: always
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ww
+      POSTGRES_PASSWORD: ww
+      POSTGRES_DB: ww
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
