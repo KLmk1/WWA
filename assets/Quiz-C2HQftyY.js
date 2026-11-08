@@ -1,0 +1,1 @@
+import{o as e,s as t}from"./index-CeDHHi4z.js";var n=t(),r=e();function i(){let e=(0,n.c)(1),t;return e[0]===Symbol.for(`react.memo_cache_sentinel`)?(t=(0,r.jsxs)(`section`,{children:[(0,r.jsx)(`h1`,{className:`text-2xl font-semibold`,children:`WWAwards`}),(0,r.jsx)(`p`,{className:`mt-2 text-slate-400`,children:`Страница в разработке.`})]}),e[0]=t):t=e[0],t}export{i as default};
